@@ -44,8 +44,9 @@ _DATASET_MAX_ENTRIES = {
     _ADE20K: 151,
     _CITYSCAPES: 256,
     _MAPILLARY_VISTAS: 66,
-    _PASCAL: 512,
+    _PASCAL: 3,  
 }
+
 
 
 def create_ade20k_label_colormap():
@@ -320,15 +321,11 @@ def create_pascal_label_colormap():
   Returns:
     A colormap for visualizing segmentation results.
   """
-  colormap = np.zeros((_DATASET_MAX_ENTRIES[_PASCAL], 3), dtype=int)
-  ind = np.arange(_DATASET_MAX_ENTRIES[_PASCAL], dtype=int)
-
-  for shift in reversed(list(range(8))):
-    for channel in range(3):
-      colormap[:, channel] |= bit_get(ind, channel) << shift
-    ind >>= 3
-
-  return colormap
+  return np.asarray([
+    [0,0,0],
+    [128,0,0],
+    [0,128,0]
+  ])
 
 
 def get_ade20k_name():
