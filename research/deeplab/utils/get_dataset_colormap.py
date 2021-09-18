@@ -323,10 +323,21 @@ def create_pascal_label_colormap():
   """
   return np.asarray([
     [0,0,0],
-    [128,0,0],
-    [0,128,0]
+    [0,128,0],
+    [128,0,0],    
+    [128,128,0],
+    [0,0,128],
+    [0,128,128],
+    [128,0,128]
   ])
-
+# 224 224 192	__ignore__
+# 0 0 0	_background_
+# 128 0 0	blocked the crosswalk
+# 0 128 0	blocked bike lane
+# 128 128 0	taxi identifier
+# 0 0 128	license plate ny
+# 128 0 128	bull bars
+# 0 128 128	license plate tlc
 
 def get_ade20k_name():
   return _ADE20K
