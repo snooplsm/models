@@ -164,20 +164,20 @@ def _process_batch(sess, original_images, semantic_predictions, image_names,
   for i in range(num_image):
     image_height = np.squeeze(image_heights[i])
     image_width = np.squeeze(image_widths[i])
-    image_name = image_names[i]
+    image_name = image_names[i].replace("'","").replace('b','')
     original_image = np.squeeze(original_images[i])
     semantic_prediction = np.squeeze(semantic_predictions[i])
     crop_semantic_prediction = semantic_prediction[:image_height, :image_width]
 
     # Save image.
     save_annotation.save_annotation(
-        original_image, save_dir, f"{image_name}.png",
+        original_image, save_dir, f"{image_name}",
         add_colormap=False)
 
     # Save prediction.
     save_annotation.save_annotation(
         crop_semantic_prediction, save_dir,
-        f"{image_name}_predict.png", add_colormap=True,
+        f"{image_name}_predict", add_colormap=True,
         colormap_type=FLAGS.colormap_type)
 
     if FLAGS.also_save_raw_predictions:
