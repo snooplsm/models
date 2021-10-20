@@ -317,20 +317,18 @@ def create_mapillary_vistas_label_colormap():
 
 def create_pascal_label_colormap():
   """Creates a label colormap used in PASCAL VOC segmentation benchmark.
-
   Returns:
     A colormap for visualizing segmentation results.
   """
-  return np.asarray([
-    [0,0,0],
-    [128,0,0],
-    [0,128,0],    
-    [128,128,0],
-    [0,0,128],
-    [128,0,128],
-    [0,128,128],
-    [224,224,192]
-  ])
+  colormap = np.zeros((_DATASET_MAX_ENTRIES[_PASCAL], 3), dtype=int)
+  ind = np.arange(_DATASET_MAX_ENTRIES[_PASCAL], dtype=int)
+
+  for shift in reversed(list(range(8))):
+    for channel in range(3):
+      colormap[:, channel] |= bit_get(ind, channel) << shift
+    ind >>= 3
+
+  return colormap  
 # 224 224 192	__ignore__
 # 0 0 0	_background_
 # 128 0 0	blocked the crosswalk
