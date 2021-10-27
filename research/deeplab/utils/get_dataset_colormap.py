@@ -44,7 +44,7 @@ _DATASET_MAX_ENTRIES = {
     _ADE20K: 151,
     _CITYSCAPES: 256,
     _MAPILLARY_VISTAS: 66,
-    _PASCAL: 10,  
+    _PASCAL: 200,  
 }
 
 
